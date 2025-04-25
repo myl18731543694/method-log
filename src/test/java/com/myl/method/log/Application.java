@@ -1,0 +1,9 @@
+package com.myl.method.log;
+
+import com.myl.method.log.annotation.EnableLog;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@EnableLog
+@SpringBootApplication
+public class Application {
+}
