@@ -1,10 +1,11 @@
 package com.myl.method.log.service;
 
 import com.myl.method.log.Application;
-import com.github.jsonzou.jmockdata.JMockData;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 
@@ -16,14 +17,14 @@ class LogServiceTests {
 
     @Test
     void error1() {
-        var phone = JMockData.mock(String.class);
-        var password = JMockData.mock(String.class);
+        var phone = UUID.randomUUID().toString();
+        var password = UUID.randomUUID().toString();
         assertThatCode(() -> logService.error1(phone, password)).hasNoSuppressedExceptions();
     }
 
     @Test
     void success() {
-        var phone = JMockData.mock(String.class);
+        var phone = UUID.randomUUID().toString();
         assertThatCode(() -> logService.success(phone)).doesNotThrowAnyException();
     }
 

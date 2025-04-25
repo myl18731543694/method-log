@@ -5,7 +5,6 @@ import com.myl.method.log.controller.req.LogTestReq;
 import com.myl.method.log.utils.RestUtils;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.jsonzou.jmockdata.JMockData;
 import jakarta.annotation.Resource;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -13,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 
 import java.util.Map;
+import java.util.UUID;
 
 @SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class LogControllerTests {
@@ -34,7 +34,9 @@ class LogControllerTests {
      */
     @Test
     void error1() {
-        var logTestReq = JMockData.mock(LogTestReq.class);
+        var logTestReq = new LogTestReq()
+            .setPhone(UUID.randomUUID().toString())
+            .setPassword(UUID.randomUUID().toString());
         var commonResponse = restUtils
             .post("/api/admin/log/error1", logTestReq)
             .result(new TypeReference<Map<String, String>>() {
